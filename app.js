@@ -1,41 +1,43 @@
 var arr= [0, 0, 0, 0, 0,0,0,0,0];
 var o=0;
 var l=0;
-$(".reset").click(function(){
-for(var i=1;i<=9;i++)
-{
-    o=0;
-    l=0;
-    arr[i-1]=0;
-    $("#b"+i).html("");
-    $(".result").html("");
+document.querySelector(".reset").addEventListener("click",function(){
+    for(var i=1;i<=9;i++)
+    {
+        o=0;
+        l=0;
+        arr[i-1]=0;
+        document.querySelector("#b"+i).innerHTML=" ";
+        
+    }
+    document.querySelector(".result").innerHTML=" ";
+    }) ;
+for(var i=0;i<9;i++){
+    document.querySelectorAll(".box")[i].addEventListener("click",function(){
+        var x=this.id[1];
+        
+        if(arr[x-1]==0)
+        {
+            //alert(x);
+            var xx="#b"+x;
+            if(l==0){
+    
+                l=1;
+                arr[x-1]=1;
+                document.querySelector(xx).innerHTML="<img src='images/cross.png' height='100px'>";
+            }
+            else{
+                l=0;
+                arr[x-1]=-1;
+                document.querySelector(xx).innerHTML="<img src='images/circle.png' height='100px'>";
+            }
+    
+            check1();
+            check2();
+        }
+    })
 }
 
-});
-
-$(".box").click(function(){
-    var x=this.id[1];
-    
-    if(arr[x-1]==0)
-    {
-        //alert(x);
-        var xx="#b"+x;
-        if(l==0){
-
-            l=1;
-            arr[x-1]=1;
-            $(xx).html("<img src='images/cross.png' height='100px'>");
-        }
-        else{
-            l=0;
-            arr[x-1]=-1;
-            $(xx).html("<img src='images/circle.png' height='100px'>");
-        }
-
-        check1();
-        check2();
-    }
-});
 
 function check1(){
     var z=0;
@@ -75,7 +77,7 @@ function check2(){
     }
     if(gg==0&&o==0)
     {
-        $(".result").html("<h3>Its a Draw!!</h3>");
+        document.querySelector(".result").innerHTML="<h3>Its a Draw!!</h3>";
     }
 }
 
@@ -85,12 +87,13 @@ function mod(z){
     }
     o=1;
     if(z==1){
-        $(".result").html("<h3>Player 1 wins the game</h3>");
+        document.querySelector(".result").innerHTML="<h3>Player 1 wins the game</h3>";
     }
     else{
-        $(".result").html("<h3>Player 2 wins the game</h3>");
+        document.querySelector(".result").innerHTML="<h3>Player 2 wins the game</h3>";
     }
 
 }
+
 
 //pehle check karna hoga har ek pattern ki kya kya case pe koi jeetega and fir uske baad agar koi jeet jata hai to array me har ek index ko ek value deni hogi and winner announce karna hoga
